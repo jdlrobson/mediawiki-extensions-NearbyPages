@@ -1,6 +1,7 @@
 {
 	"private": true,
 	"scripts": {
+		"deploy": "node dev/build.js && parcel build dev/index.html --no-cache  --out-dir build/ --public-url /",
 		"precommit": "npm -s run test",
 		"test:unit": "jest",
 		"start": "node dev/build.js && parcel dev/index.html",
