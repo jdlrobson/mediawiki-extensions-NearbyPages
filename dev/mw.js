@@ -25,7 +25,7 @@ module.exports = {
     Api,
     util: {
         getUrl: function ( title ) {
-            return '#/wiki/' + title;
+            return `${extConfig.config.NearbyPagesUrl.split('/w/api.php')[ 0 ]}/wiki/${title}`;
         }
     },
     config: {
@@ -40,6 +40,16 @@ module.exports = {
         }
     },
     msg: function ( key ) {
-        return i18n[key];
+        let msg = i18n[key];
+        const args = Array.from(arguments).slice(1);
+        // drop plural support
+        msg = msg.replace(/\{\{PLURAL\:.*\|(.*)\}\}/, '$1');
+        if ( args.length ) {
+            args.forEach((val, i) => {
+                console.log(i);
+                msg = msg.replace(`\$${i+1}`, val);
+            });
+        }
+        return msg;
     }
 };
