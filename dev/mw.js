@@ -59,7 +59,6 @@ module.exports = {
         msg = msg.replace(/\{\{PLURAL\:.*\|(.*)\}\}/, '$1');
         if ( args.length ) {
             args.forEach((val, i) => {
-                console.log(i);
                 msg = msg.replace(`\$${i+1}`, val);
             });
         }
